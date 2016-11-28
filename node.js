@@ -79,23 +79,28 @@ exports.formatters.o = exports.formatters.O = function(v) {
  * @api public
  */
 
-function formatArgs() {
-  var args = [];
-  var len = arguments.length;
-  var useColors = this.useColors;
-  var name = this.namespace;
-  for (var i = 0; i < len; i++) {
-    args.push(arguments[i]);
-  }
+ function formatArgs() {
+   var args = [];
+   var len = arguments.length;
+   var useColors = this.useColors;
+   var name = this.namespace;
+   for (var i = 0; i < len; i++) {
+     args.push(arguments[i]);
+   }
 
-  var c = this.color;
+   if (useColors) {
+     var c = this.color;
 
-  args[0] = '  \u001b[3' + c + ';1m' + name + ' '
-    + '\u001b[0m'
-    + args[0];
-  args.push('\u001b[3' + c + 'm+' + exports.humanize(this.diff) + '\u001b[0m');
-  return args;
-}
+     args[0] = '  \u001b[3' + c + ';1m' + name + ' '
+       + '\u001b[0m'
+       + args[0];
+     args.push('\u001b[3' + c + 'm+' + exports.humanize(this.diff) + '\u001b[0m');
+   } else {
+     args[0] = name + ' ' + args[0];
+     args.push('+' + exports.humanize(this.diff);
+   }
+   return args;
+ }
 
 /**
  * Invokes `console.error()` with the specified arguments.
