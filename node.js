@@ -97,7 +97,7 @@ exports.formatters.o = exports.formatters.O = function(v) {
      args.push('\u001b[3' + c + 'm+' + exports.humanize(this.diff) + '\u001b[0m');
    } else {
      args[0] = name + ' ' + args[0];
-     args.push('+' + exports.humanize(this.diff);
+     args.push('+' + exports.humanize(this.diff));
    }
    return args;
  }
